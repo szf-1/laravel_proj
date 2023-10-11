@@ -122,7 +122,7 @@
         </marquee></center>
         <div class="relative sm:flex sm:justify-center sm:items-center min-h-screen  bg-center dark:bg-gray-900 selection:bg-red-500 selection:text-white">
         <div class="text-left" style="background-image: url('image/rd1.png');">
-        <img width="50" src= "{{ asset ('image/info.png')}}"/>
+        <img width="50" src= "{{ asset ('image/j53_.png')}}"/>
                 @if (Route::has('login'))
                     <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
                         @auth
