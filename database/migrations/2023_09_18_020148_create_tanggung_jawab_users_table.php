@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('tanggung_jawab_users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('jenis_tanggung_jawab');
+            $table->string('nama_tanggung_jawab');
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
         });
     }

@@ -47,7 +47,9 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('profile', [UserController::class, 'profile'])->name('users.profile');
     Route::post('profile', [UserController::class, 'profileUpdate'])->name('users.profileUpdate');
     
-    
+    Route::get('/tanggungjawabusers/create', 'TanggungJawabUserController@create')->name('tanggungjawabusers.create');
+    Route::post('/tanggungjawabusers', 'TanggungJawabUserController@store')->name('tanggungjawabusers.store');
+
     
 });
 

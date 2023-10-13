@@ -7,11 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class TanggungJawabUser extends Model
 {
-    use HasFactory;
 
-    protected $fillable = [
-        'id',
-        'name',
-        'jenis_tanggung_jawab',
-    ];
+    protected $table = 'tanggung_jawab_users';
+
+    protected $primaryKey = 'id';
+
+    protected $fillable = ['user_id', 'nama_tanggung_jawab'];
+
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
+

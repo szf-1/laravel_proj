@@ -1,27 +1,54 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Edit Tanggung Jawab</h1>
+    <div class="row">
+        <div class="col-lg-12 margin-tb">
+            <div class="pull-left">
+                <h2>Edit Tanggung Jawab</h2>
+            </div>
+            <div class="pull-right">
+                <a class="btn btn-primary" href="{{ route('tanggungjawabusers.index') }}"> Kembali</a>
+            </div>
+        </div>
+    </div>
 
-    <form method="POST" action="{{ route('tanggungjawabusers.update', $tanggungjawab->id) }}">
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <strong>Whoops!</strong> Terdapat beberapa masalah dengan input Anda.<br><br>
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
+    <form action="{{ route('tanggungjawabusers.update', $tanggungjawabuser->id) }}" method="POST">
         @csrf
-        @method('PATCH')
+        @method('PUT')
+
         <div class="form-group">
-            <label for="id">Id:</label>
-            <input type="text" name="nama" class="form-control" value="{{ $tanggungjawab->nama }}" required>
+            <label for="user_id">User ID:</label>
+            <input type="text" name="user_id" id="user_id" class="form-control" value="{{ $tanggungjawabuser->user_id }}" readonly>
         </div>
+
         <div class="form-group">
-            <label for="name">Name:</label>
-            <textarea name="name" class="form-control" required>{{ $tanggungjawab->name }}</textarea>
+            <label for="tanggungjawab">Tanggung Jawab:</label><br>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="tanggungjawabusers[]" value="membaca" id="membaca" {{ in_array('membaca', $tanggungjawabuser->nama_tanggung_jawab) ? 'checked' : '' }}>
+                <label class="form-check-label" for="membaca">Membaca</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="tanggungjawabusers[]" value="menulis" id="menulis" {{ in_array('menulis', $tanggungjawabuser->nama_tanggung_jawab) ? 'checked' : '' }}>
+                <label class="form-check-label" for="menulis">Menulis</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="tanggungjawabusers[]" value="mengetik" id="mengetik" {{ in_array('mengetik', $tanggungjawabuser->nama_tanggung_jawab) ? 'checked' : '' }}>
+                <label class="form-check-label" for="mengetik">Mengetik</label>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="jenis tanggung jawab">jenis_tanggung_jawab:</label>
-            <textarea jenis tanggung jawab="jenis tanggung jawab" class="form-control" required>{{ $tanggungjawab->jenis tanggung jawab }}</textarea>
-</div>
-        <button type="submit" class="btn btn-primary">Simpan</button>
+
+        <button type="submit" class="btn btn-primary">Perbarui</button>
     </form>
+</div>
 @endsection
-   
-
-
-    

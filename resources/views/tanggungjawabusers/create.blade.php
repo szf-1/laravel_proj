@@ -1,35 +1,49 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="row">
-                <div class="card">
-                    <div class="card-header" style="background: gray; color:#f1f7fa; font-weight:bold;">
-                <h2>Tanggung Jawab</h2>
+    <div class="row">
+        <div class="col-lg-12 margin-tb">
+            <div class="pull-left">
+                <h2>Add Tanggung Jawab</h2>
             </div>
-            {!! Form::open(['route' => 'tanggungjawabusers.store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
-            <select class="form-control selectpicker" multiple data-live-search="true">
-                <option selected disabled>Open this select menu</option>
-                <option value="typing">Typing</option>
-                <option value="reading">Reading</option>
-                <option value="take">take</option>
-                <option value="drawing">Drawing</option>
-                
-            </select>
-
-            <div class="row mb-3">
-                            <label class="col-sm-3 col-form-label"></label>
-                            <div class="col-sm-9">
-                                <button type="submit" class="btn btn-success btn-block text-white">Submit</button>
-                            </div>
-                        </div>
-</form>
+            <div class="pull-right">
+                <a class="btn btn-primary btn-sm" href="{{ route('tanggungjawabusers.index') }}">Back</a>
+            </div>
         </div>
     </div>
-</div>
-
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <strong>Whoops!</strong> There were some problems with your input.<br><br>
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+    <div class="row">
+        <div class="col-12">
+            <form action="{{ route('tanggungjawabusers.store') }}" method="POST">
+                @csrf
+                
+        
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="tanggungjawabusers[]" value="membaca" id="membaca">
+                    <label class="form-check-label" for="membaca">Membaca</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="tanggungjawabusers[]" value="menulis" id="menulis">
+                    <label class="form-check-label" for="menulis">Menulis</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="tanggungjawabusers[]" value="mengetik" id="mengetik">
+                    <label class="form-check-label" for="mengetik">Mengetik</label>
+                </div>
+                
+                <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+                    <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
 @endsection
-

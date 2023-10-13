@@ -11,7 +11,6 @@
             </div>  
         </div>
     </div>
-</div>
 
     @if ($message = Session::get('success'))
     <div class="alert alert-timeout alert-success">
